@@ -31,6 +31,7 @@ const actions = {
                     )
                     window.location.replace("/app")
                 }else{
+                    //se envie el error a la vista
                     commit('setLoginMessage',response.data.message)
                 }
             })
