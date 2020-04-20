@@ -2,53 +2,52 @@ import axios from "axios";
 
 const state = {
     user: {},
-    loginMessage:"",
+    loginMessage: ""
 };
 
 const getters = {};
 
 const actions = {
-
-    getUser({commit}){
-        axios.
-        get("api/user/current")
-            .then( response => {
-               commit('setUser',response.data)
-            });
+    getUser({ commit }) {
+        axios.get("api/user/current").then(response => {
+            commit("setUser", response.data);
+        });
     },
 
-    loginUser({commit},user){
+    loginUser({ commit }, user) {
         axios
-            .post("api/user/login",{
+            .post("api/user/login", {
                 email: user.email,
                 password: user.password
             })
-            .then( response => {
-                if (response.data.access_token){
+            .then(response => {
+                if (response.data.access_token) {
                     localStorage.setItem(
                         "blog_token",
                         response.data.access_token
-                    )
-                    window.location.replace("/app")
-                }else{
+                    );
+                    window.location.replace("/app");
+                } else {
                     //se envie el error a la vista
-                    commit('setLoginMessage',response.data.message)
+                    commit("setLoginMessage", response.data.message);
                 }
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
             });
     },
-    logoutUser(){
+
+    logoutUser() {
         localStorage.removeItem("blog_token");
-        window.location.replace("/login");
+        window.location.replace("/inicio");
     }
 };
+
 const mutations = {
-    setUser(state,data){
+    setUser(state, data) {
         state.user = data;
     },
-    setLoginMessage(state,data){
+    setLoginMessage(state, data) {
         state.loginMessage = data;
     }
 };
@@ -59,6 +58,4 @@ export default {
     getters,
     actions,
     mutations
-}
-
-
+};

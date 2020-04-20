@@ -13,7 +13,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script>
         if (!localStorage.hasOwnProperty("blog_token")) {
-            window.location.replace("/login")
+            window.location.replace("/inicio")
         }
     </script>
 
