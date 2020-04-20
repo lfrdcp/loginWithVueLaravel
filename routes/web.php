@@ -19,8 +19,4 @@ Route::get('/inicio', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-
-
 Route::get('/app', 'AppController@index')->name('app');
